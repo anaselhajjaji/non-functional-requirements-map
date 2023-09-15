@@ -27,6 +27,21 @@
 +++++_ Automatic scalling\nmonitor demand and automate the addition and removal of resources
 
 ++ Security
++++ Control Vulnerabilities
+++++_ Technics
++++++_ Review the [[https://cve.mitre.org/ The Common Vulnerabilities and Exposures (CVE) List]]\nof the software components and fix if needed (better if automated)
++++ Identity and access management
+++++_ Identity management
++++++_ Definition
+++++++_ **Human identities**\nRequires identity of different actors accessing the environment / service
+++++++_ **Machine identity**\nRequires identity for a component trying to access the environment / service
++++++_ Technics
+++++++_ Require **MFA (Multi Factor Authentication)**
+++++++_ Enforce minimum password length
+++++++_ Enforce password complexity to make it difficult to guess
+++++++_ Allow users to change their own passwords
+++++++_ Create individual identities instead of shared credentials
+
 ++ Cost
 ++ Performance
 
