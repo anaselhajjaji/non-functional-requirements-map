@@ -3,7 +3,33 @@
 + Non-Functional\nRequirements (NFRs)
 
 ++ Reliability
-++ Maintainability
--- Security
++++ Resiliency
+++++_ Definition
++++++_ Ability to recover from infrastructure or service disruptions
+++++_ Technics
++++++ Disaster Recovery Strategy (DR)
+++++++_ Metrics
++++++++_ **Recovery Time Objective (RTO)**\nthe maximum acceptable delay between the interruption and restoration of service
++++++++_ **Recovery Point Objective (RPO)**\nthe maximum acceptable amount of time since the last data recovery point
+++++++_ Technics
++++++++_ Monitor a KPI metric (business value) and run automation when a threshold is breached
++++++++_ Recreate scenarios that led to failures, test and fix before real failure scenario occurs
++++ Availability
+++++_ Definition
++++++_ The percentage of time that a service is available for use
+++++_ Metrics
++++++_ Based on requests\navailability = Success Req / Valid Req
++++++_ Sequenced dependencies\navailability = avail_invoked_serv * avail_dep1 * avail_dep2
++++++_ Redundant component (2)\navailability = avail_max - ((100-avail_dependency)*(100-avail_dependency))
++++++_ If availability is not known\navailability_est = **MTBF Mean Time Between Failure** / (MTBF + **MTTR Mean Time to Recover**)
+++++_ Technics
++++++_ Scale horizontally and Load Balancing\nReplace one large resource with multiple small resources\nDistribute requests accross multiple smaller resources
++++++_ Automatic scalling\nmonitor demand and automate the addition and removal of resources
+
+++ Security
+++ Cost
+++ Performance
+
+-- Maintainability
 
 @endmindmap
