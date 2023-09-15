@@ -1,0 +1,9 @@
+@startmindmap "Non-Functional Requirements Map"
+
++ Non-Functional\nRequirements (NFRs)
+
+++ Reliability
+++ Maintainability
+-- Security
+
+@endmindmap
