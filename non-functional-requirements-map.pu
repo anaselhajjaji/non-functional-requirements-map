@@ -12,8 +12,12 @@
 +++++++_ **Recovery Time Objective (RTO)**\nthe maximum acceptable delay between the interruption and restoration of service
 +++++++_ **Recovery Point Objective (RPO)**\nthe maximum acceptable amount of time since the last data recovery point
 ++++++_ Technics
++++++++_ Design a multi-region architecture for resilience to regional outages
++++++++_ Replicate data across regions
 +++++++_ Monitor a KPI metric (business value) and run automation when a threshold is breached
 +++++++_ Recreate scenarios that led to failures, test and fix before real failure scenario occurs
++++++++_ Ensure that every change can be rolled back
++++++++_ Automated failover between zones/regions
 +++ Availability
 ++++_ Definition
 +++++_ The percentage of time that a service is available for use
@@ -25,6 +29,21 @@
 ++++_ Technics
 +++++_ Scale horizontally and Load Balancing\nReplace one large resource with multiple small resources\nDistribute requests accross multiple smaller resources
 +++++_ Automatic scalling\nmonitor demand and automate the addition and removal of resources
++++++_ Design a multi-region architecture for high availability
++++++_ Replicate data across regions
++++++_ Automated failover between zones/regions
+
++++_ Metrics
+++++_ **Service Level Indicator (SLI)**\nLevel of service that is being provided\nIt's a metric not a target
++++++_ **Availability**
++++++_ **Latency**
+++++++_ **P99**
+++++++_ **P95**
+++++++_ **P50**
++++++_ **Freshness** of data\nHow fresh the source data or the aggregated output data is
++++++_ **Throughput** of data\nHow much data is being processed\nsuch as 500 MiB/sec or even 1000 **requests per second (RPS)**
+++++_ **Service Level Objective (SLO)**\nTarget value for SLI
+++++_ **Service Level Agreement (SLA)**\nContract with the users that includes consequences if the SLOs are not met
 
 ++ Security
 +++ Control Vulnerabilities
@@ -41,6 +60,11 @@
 ++++++_ Enforce password complexity to make it difficult to guess
 ++++++_ Allow users to change their own passwords
 ++++++_ Create individual identities instead of shared credentials
+++++_ Permissions management
++++++_ Definition
+++++++_ Control who can access what, and under what conditions
++++++_ Technics
+++++++_ Implement least privilege policies
 
 ++ Cost
 ++ Performance
