@@ -3,7 +3,104 @@
 + Non-Functional\nRequirements (NFRs)
 
 ++ Reliability
-++ Maintainability
--- Security
++++ Resiliency
+++++_ Definition
++++++_ Ability to recover from infrastructure or service disruptions
+++++_ Technics
++++++ Disaster Recovery Strategy (DR)
+++++++_ Metrics
++++++++_ **Recovery Time Objective (RTO)**\nthe maximum acceptable delay between the interruption and restoration of service
++++++++_ **Recovery Point Objective (RPO)**\nthe maximum acceptable amount of time since the last data recovery point
+++++++_ Technics
++++++++_ Design a multi-region architecture for resilience to regional outages
++++++++_ Replicate data across regions
++++++++_ Monitor a KPI metric (business value) and run automation when a threshold is breached
++++++++_ Recreate scenarios that led to failures, test and fix before real failure scenario occurs
++++++++_ Ensure that every change can be rolled back
++++++++_ Automated failover between zones/regions
++++++++_ Replicate data across regions
+++++++++_ Periodic backup
++++++++++_ Longer downtime to restore
++++++++++_ Data loss due to the gap\nbetween consecutive backup operations
+++++++++_ Continuous replication
++++++++_ Automated failover between zones/regions
++++++++_ Eliminate all cross-zone dependencies
++++++_ Mitigate traffic spikes
+++++++_ **Throttling**
+++++++_ **Queueing**
+++++++_ **Load shedding** drops some proportion of load by dropping traffic
++++++_ **Idempotency**\nPerform identical action on an object should produce the same results
++++ Availability
+++++_ Definition
++++++_ The percentage of time that a service is available for use
+++++_ Metrics
++++++_ [[https://research.google/pubs/pub46285/ The Calculus of Service Availability]]
++++++_ Based on requests\navailability = Success Req / Valid Req
++++++_ Sequenced dependencies\navailability = avail_invoked_serv * avail_dep1 * avail_dep2
++++++_ Redundant component (2)\navailability = avail_max - ((100-avail_dependency)*(100-avail_dependency))
++++++_ If availability is not known\navailability_est = **MTBF Mean Time Between Failure** / (MTBF + **MTTR Mean Time to Recover**)
+++++_ Technics
++++++_ Scale horizontally and Load Balancing\nReplace one large resource with multiple small resources\nDistribute requests accross multiple smaller resources
++++++_ Automatic scalling\nmonitor demand and automate the addition and removal of resources
++++++_ Design a multi-region architecture for high availability
+
++++_ Metrics
+++++_ **Service Level Indicator (SLI)**\nLevel of service that is being provided\nIt's a metric not a target
++++++_ **Availability**
++++++_ **Latency**
+++++++_ **P99**
+++++++_ **P95**
+++++++_ **P50**
++++++_ **Freshness** of data\nHow fresh the source data or the aggregated output data is
++++++_ **Throughput** of data\nHow much data is being processed\nsuch as 500 MiB/sec or even 1000 **requests per second (RPS)**
+++++_ **Service Level Objective (SLO)**\nTarget value for SLI
+++++_ **Service Level Agreement (SLA)**\nContract with the users that includes consequences if the SLOs are not met
+
+++ Security
++++ Control Vulnerabilities
+++++_ Technics
++++++_ Review the [[https://cve.mitre.org/ The Common Vulnerabilities and Exposures (CVE) List]]\nof the software components and fix if needed (better if automated)
++++ Identity and access management
+++++_ Identity management
++++++_ Definition
+++++++_ **Human identities**\nRequires identity of different actors accessing the environment / service
+++++++_ **Machine identity**\nRequires identity for a component trying to access the environment / service
++++++_ Technics
+++++++_ Require **MFA (Multi Factor Authentication)**
+++++++_ Enforce minimum password length
+++++++_ Enforce password complexity to make it difficult to guess
+++++++_ Allow users to change their own passwords
+++++++_ Create individual identities instead of shared credentials
+++++_ Permissions management
++++++_ Definition
+++++++_ Control who can access what, and under what conditions
++++++_ Technics
+++++++_ Implement least privilege policies
++++ Secure programming
+++++_ Technics
++++++_ Sanitize and validate inputs
++++++_ Perform **fuzz testing**\ncalls APIs with random, empty, or too-large inputs
+
+
+++ Cost
+++ Performance
+
+-- Deployment
+---_ Technics
+----_ Progressive Rollout
+----- Blue/green Deployment
+------_ Definition
+-------_ Blue represents the current application version\nand green represents the new application version.\nOnly one version is live at a time.\nTraffic is routed to the blue deployment\nwhile the green deployment is created and tested.\nAfter you're finished testing,\nyou route traffic to the new version.
+------_ Technics
+-------_ The **load balancer** (or **Service Mesh control plane**)\nwill handle the switch
+----- Canary Deployment
+------_ Definition
+-------_ Split traffic between an already-deployed version\nand a new version, rolling it out to a subset of users\nbefore rolling out fully
+------_ Technics
+-------_ The **load balancer** (or **Service Mesh control plane**)\nwill handle trafic splitting
+-------_ Metrics comparison between new and old system\nand flag unexpected or anomalous behavior
+-------_ Ability to rollback if the canary test is not successfull
+
+-- Maintainability
 
 @endmindmap
