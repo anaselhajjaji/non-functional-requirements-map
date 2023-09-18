@@ -18,10 +18,23 @@
 +++++++_ Recreate scenarios that led to failures, test and fix before real failure scenario occurs
 +++++++_ Ensure that every change can be rolled back
 +++++++_ Automated failover between zones/regions
++++++++_ Replicate data across regions
+++++++++_ Periodic backup
++++++++++_ Longer downtime to restore
++++++++++_ Data loss due to the gap\nbetween consecutive backup operations
+++++++++_ Continuous replication
++++++++_ Automated failover between zones/regions
++++++++_ Eliminate all cross-zone dependencies
++++++_ Mitigate traffic spikes
+++++++_ **Throttling**
+++++++_ **Queueing**
+++++++_ **Load shedding** drops some proportion of load by dropping traffic
++++++_ **Idempotency**\nPerform identical action on an object should produce the same results
 +++ Availability
 ++++_ Definition
 +++++_ The percentage of time that a service is available for use
 ++++_ Metrics
++++++_ [[https://research.google/pubs/pub46285/ The Calculus of Service Availability]]
 +++++_ Based on requests\navailability = Success Req / Valid Req
 +++++_ Sequenced dependencies\navailability = avail_invoked_serv * avail_dep1 * avail_dep2
 +++++_ Redundant component (2)\navailability = avail_max - ((100-avail_dependency)*(100-avail_dependency))
@@ -30,8 +43,6 @@
 +++++_ Scale horizontally and Load Balancing\nReplace one large resource with multiple small resources\nDistribute requests accross multiple smaller resources
 +++++_ Automatic scalling\nmonitor demand and automate the addition and removal of resources
 +++++_ Design a multi-region architecture for high availability
-+++++_ Replicate data across regions
-+++++_ Automated failover between zones/regions
 
 +++_ Metrics
 ++++_ **Service Level Indicator (SLI)**\nLevel of service that is being provided\nIt's a metric not a target
@@ -65,6 +76,11 @@
 ++++++_ Control who can access what, and under what conditions
 +++++_ Technics
 ++++++_ Implement least privilege policies
++++ Secure programming
+++++_ Technics
++++++_ Sanitize and validate inputs
++++++_ Perform **fuzz testing**\ncalls APIs with random, empty, or too-large inputs
+
 
 ++ Cost
 ++ Performance
