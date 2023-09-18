@@ -85,6 +85,16 @@
 ++ Cost
 ++ Performance
 
+-- Deployment
+---_ Technics
+----_ Progressive Rollout
+-----_ Canary Deployment
+------_ Definition
+-------_ Split traffic between an already-deployed version\nand a new version, rolling it out to a subset of users\nbefore rolling out fully
+------_ Technics
+-------_ Metrics comparison between new and old system\nand flag unexpected or anomalous behavior
+-------_ Ability to rollback if the canary test is not successfull
+
 -- Maintainability
 
 @endmindmap
