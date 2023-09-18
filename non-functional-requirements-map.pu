@@ -88,10 +88,16 @@
 -- Deployment
 ---_ Technics
 ----_ Progressive Rollout
------_ Canary Deployment
+----- Blue/green Deployment
+------_ Definition
+-------_ Blue represents the current application version\nand green represents the new application version.\nOnly one version is live at a time.\nTraffic is routed to the blue deployment\nwhile the green deployment is created and tested.\nAfter you're finished testing,\nyou route traffic to the new version.
+------_ Technics
+-------_ The **load balancer** (or **Service Mesh control plane**)\nwill handle the switch
+----- Canary Deployment
 ------_ Definition
 -------_ Split traffic between an already-deployed version\nand a new version, rolling it out to a subset of users\nbefore rolling out fully
 ------_ Technics
+-------_ The **load balancer** (or **Service Mesh control plane**)\nwill handle trafic splitting
 -------_ Metrics comparison between new and old system\nand flag unexpected or anomalous behavior
 -------_ Ability to rollback if the canary test is not successfull
 
